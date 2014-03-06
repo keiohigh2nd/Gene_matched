@@ -4,6 +4,8 @@
 int main(int argc, char *argv[]) { 
    
 	Gene_matched gm;
-	gm.train(3,2);
+	std::vector<Layer> nw = gm.train(3,2);
+
+	gm.ignition(nw,start);
 
 }

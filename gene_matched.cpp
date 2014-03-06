@@ -22,16 +22,21 @@ Cell Gene_matched::generate_cell(int layer_num) {
 	return cell;
 }
 
-void Gene_matched::train(int lay_num, int cols){
-	std::vector<std::vector<Cell> >layers;
+std::vector<Layer> Gene_matched::train(int lay_num, int cols){
+	std::vector<Layer> layers;
 	for(size_t i=0; i < lay_num; ++i) {
-		std::vector<Cell> layer;
+		///std::vector<Cell> layer;
+		Layer layer;
+		layer.label = i;
 		for(size_t j=0; j < cols;  ++j) {
 			Cell cell = generate_cell(i);
-			layer.push_back(cell);
+			layer.box.push_back(cell);
 		}
 		layers.push_back(layer);
 	}
-
+	return layers;
 } 
 
+void Gene_matched::ignition(std::vector<Layer>& layers, std::vector<int> start){
+
+}

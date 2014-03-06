@@ -11,6 +11,7 @@ struct Cell {
 
 struct Layer {
 	int label;
+	std::vector<Cell> box;
 };
 
 class Gene_matched {
@@ -18,7 +19,8 @@ class Gene_matched {
 		Gene_matched() {};
 		~Gene_matched() {};
 
-		void train(int lay_num,int cols);
+		std::vector<Layer> train(int lay_num,int cols);
 		Cell generate_cell(int layer_num);
 
+		void ignition(std::vector<Layer>&layers);
 };
