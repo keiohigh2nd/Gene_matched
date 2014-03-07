@@ -54,21 +54,21 @@ int find_gene_set(Cell& cell_a, Cell& cell_b){
 		for(size_t j=0; j < cell_b.genes.size(); ++j){
 			if (cell_a.genes[i] == cell_b.genes[j]) {
 				cell_b.val += 1;
-				return 0;
 			}
 		}
 	}
+	return 0;
 }
 
 void add_next_layer(Layer& layer, Cell& cell){
 	for(size_t i=0; layer.box.size(); ++i){
-		find_gene_set(layer.box[i],cell);	
+		find_gene_set(cell,layer.box[i]);	
 	}
 }
 
 Layer get_result(std::vector<Layer>& layers){
 	for(size_t k=0; k < layers.size(); ++k){
-		for(size_t i=0; i < layers[0].box.size(); ++i) {
+		for(size_t i=0; i < layers[k].box.size(); ++i) {
 			if (layers[k].box[i].val == 1) {
 				add_next_layer(layers[k+1],layers[k].box[i]);
 			}
@@ -76,6 +76,18 @@ Layer get_result(std::vector<Layer>& layers){
 	}
 	int tmp = layers.size()-1;
 	return layers[tmp];
+}
+
+void test_end(Layer& layer){
+        for(size_t i=0; i < layer.box.size();++i){
+                std::cout << layer.box[i].val <<std::endl;
+        }
+}
+
+void show_layers(std::vector<Layer>& layers){
+        for(size_t i=0; i < layers.size();++i) {
+                test_end(layers[i]);
+        }
 }
 
 Layer Gene_matched::ignition(std::vector<Layer>& layers, std::vector<int>& start){
@@ -90,7 +102,8 @@ Layer Gene_matched::ignition(std::vector<Layer>& layers, std::vector<int>& start
 	}
 
 	end = get_result(layers);
-
+	show_layers(layers);
 	return end;
 }
+
 

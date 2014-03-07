@@ -4,14 +4,15 @@
 int main(int argc, char *argv[]) { 
    
 	Gene_matched gm;
-	std::vector<Layer> nw = gm.train(3,2);
+	std::vector<Layer> nw = gm.train(10,10);
 
 	std::vector<int> start;
-	start = easy_test(2);
+	start = easy_test(10);
 	Layer end;
 	end = gm.ignition(nw,start);
 
-	std::cout << end.box.size() << std::endl;
+	///test_end(end);
+	std::cout << "box size" <<end.box.size() << std::endl;
 
 	return 0;
 }
