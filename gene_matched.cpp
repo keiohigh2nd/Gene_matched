@@ -23,6 +23,7 @@ Cell Gene_matched::generate_cell(int layer_num) {
 }
 
 std::vector<Layer> Gene_matched::train(int lay_num, int cols){
+	std::cout << lay_num << "layers" << cols << "boxes" << std::endl;
 	std::vector<Layer> layers;
 	for(size_t i=0; i < lay_num; ++i) {
 		///std::vector<Cell> layer;
@@ -38,7 +39,7 @@ std::vector<Layer> Gene_matched::train(int lay_num, int cols){
 }
 
 int get_binary(){
-	return rand() % 1;
+	return rand() % 2;
 }
 
 std::vector<int> easy_test(int box_size){
@@ -60,15 +61,19 @@ int find_gene_set(Cell& cell_a, Cell& cell_b){
 	return 0;
 }
 
-void add_next_layer(Layer& layer, Cell& cell){
-	for(size_t i=0; layer.box.size(); ++i){
+int add_next_layer(Layer& layer, Cell& cell){
+	for(size_t i=0; i < layer.box.size(); ++i){
+		///std::cout << "Next Box number" << i <<std::endl;
 		find_gene_set(cell,layer.box[i]);	
 	}
+	return 0;
 }
 
 Layer get_result(std::vector<Layer>& layers){
-	for(size_t k=0; k < layers.size(); ++k){
+	for(size_t k=0; k < layers.size()-1; ++k){
+		///std::cout << "Layer number" << k << std::endl;
 		for(size_t i=0; i < layers[k].box.size(); ++i) {
+			///std::cout << "Box number" << i << std::endl;
 			if (layers[k].box[i].val == 1) {
 				add_next_layer(layers[k+1],layers[k].box[i]);
 			}
@@ -79,9 +84,11 @@ Layer get_result(std::vector<Layer>& layers){
 }
 
 void test_end(Layer& layer){
+	
         for(size_t i=0; i < layer.box.size();++i){
-                std::cout << layer.box[i].val <<std::endl;
+              std::cerr <<  layer.box[i].val;
         }
+	std::cerr << "-----"<< std::endl;	
 }
 
 void show_layers(std::vector<Layer>& layers){

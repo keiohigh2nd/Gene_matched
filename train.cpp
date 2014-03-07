@@ -12,7 +12,6 @@ int main(int argc, char *argv[]) {
 	end = gm.ignition(nw,start);
 
 	///test_end(end);
-	std::cout << "box size" <<end.box.size() << std::endl;
 
 	return 0;
 }
