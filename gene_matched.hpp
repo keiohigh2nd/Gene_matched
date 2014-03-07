@@ -4,8 +4,7 @@
 
 struct Cell {
 	std::vector<int> genes;
-	int from_num;
-	int to_num;
+	int val;
 	int layer_num;
 };
 
