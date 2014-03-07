@@ -21,5 +21,5 @@ class Gene_matched {
 		std::vector<Layer> train(int lay_num,int cols);
 		Cell generate_cell(int layer_num);
 
-		void ignition(std::vector<Layer>&layers);
+		Layer ignition(std::vector<Layer>& layers, std::vector<int>& start);
 };

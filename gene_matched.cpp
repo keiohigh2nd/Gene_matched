@@ -54,7 +54,7 @@ int find_gene_set(Cell& cell_a, Cell& cell_b){
 		for(size_t j=0; j < cell_b.genes.size(); ++j){
 			if (cell_a.genes[i] == cell_b.genes[j]) {
 				cell_b.val += 1;
-				return 0
+				return 0;
 			}
 		}
 	}
@@ -66,7 +66,7 @@ void add_next_layer(Layer& layer, Cell& cell){
 	}
 }
 
-std::vector<int> get_result(std::vector<Layer>& layers){
+Layer get_result(std::vector<Layer>& layers){
 	for(size_t k=0; k < layers.size(); ++k){
 		for(size_t i=0; i < layers[0].box.size(); ++i) {
 			if (layers[k].box[i].val == 1) {
@@ -74,20 +74,21 @@ std::vector<int> get_result(std::vector<Layer>& layers){
 			}
 		}
 	}
-	return layers[layers.size()-1]
+	int tmp = layers.size()-1;
+	return layers[tmp];
 }
 
-std::vector<int> Gene_matched::ignition(std::vector<Layer>& layers, std::vector<int> start){
+Layer Gene_matched::ignition(std::vector<Layer>& layers, std::vector<int>& start){
+	Layer end;
 	if (layers[0].box.size() != start.size()){
 		std::cout << "Wrong input dimension" << std::endl;
-		return 0
+		return end;	
 	}
 
 	for(size_t i=0; i < start.size(); ++i){
-		layers[0].box[i].val = start[i]	
+		layers[0].box[i].val = start[i];
 	}
 
-	std::vector<int> end;
 	end = get_result(layers);
 
 	return end;
