@@ -10,7 +10,7 @@ int get_random(const int up){
 }
 
 Cell Gene_matched::generate_cell(int layer_num) {
-	int up = 10;
+	int up = 5;
 	int gene_num = 2;
 
 	Cell cell;

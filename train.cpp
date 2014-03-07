@@ -4,10 +4,10 @@
 int main(int argc, char *argv[]) { 
    
 	Gene_matched gm;
-	std::vector<Layer> nw = gm.train(10,10);
+	std::vector<Layer> nw = gm.train(5,6); ///(Number of Layer, Cells of one Layer)
 
 	std::vector<int> start;
-	start = easy_test(10);
+	start = easy_test(6);
 	Layer end;
 	end = gm.ignition(nw,start);
 
